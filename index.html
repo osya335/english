@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>日常会話でよく使う短い英会話114</title>
+  <link rel="stylesheet" href="main.css">
+  <style>
+    #app-2 .error {
+      color: red;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>      
+</head>
+<body >
+  <div class=c2>
+  <div id="app-2">
+
+
+	<h1>日常会話でよく使う短い英会話114</h4>
+	<br>
+	<h3>正解だったら正解ボタンをクリック。次から問題に出なくなります。</h3>
+
+<!--
+	My name is <input v-model="name">
+
+	<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+	<label for="jack">Jack</label>
+	<input type="checkbox" id="john" value="John" v-model="checkedNames">
+	<label for="john">John</label>
+	<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+	<label for="mike">Mike</label>
+	<br>
+	<span>Checked names: {{ checkedNames }}</span>
+
+	<button v-on:click="anser">anser</button>
+
+		<section class="item-container" v-for="(item, index) in items">
+			<h4>{{ item.name }}<button v-on:click="changeStatus(index)">表示</button></h4>
+	
+			<div class="text-box"  v-if="shows[index]">
+			  <h4>{{ item.content }}</h4>
+			</div>
+	   </section>
+
+
+	<ul>
+	  <li v-for="item in list">
+	    和文：{{ item.jp }}		<br>
+		英文：{{ item.eng }}
+	  </li>
+	</ul>
+-->
+
+<section class="item-container" v-for="(item, index) in list">
+	<div class="text-box"  v-if="showsA[index]">
+			<h2><label for="showsA[index]">・{{ item.jp }}<button v-on:click="changeStatus(index)">表示</button></label></h2>
+	</div>
+
+	<div class="text-box"  v-if="shows[index]">
+		<font size="6" color="red">――{{ item.eng }}<button v-on:click="changeStatusA(index)">正解</button></font>
+	</div>
+</section>
+
+  </div>
+  
+
+<script>
+
+var STORAGE_KEY = 'showsA-vuejs-demo'
+var STORAGE_KEY2 = 'counter-vuejs-demo'
+var showsAStorage = {
+  fetch: function () {
+//	  var showsA =[true,true,true]
+	var showsA = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+	//console.log("JSON.parse was called:showsA=",showsA)
+	/*
+    showsA.forEach(function (shows, index) {
+		shows.id = index
+	})
+	*/
+	showsAStorage.uid = showsA.length
+	console.log("showsAStorage.uid = ",showsAStorage.uid)
+	return showsA
+  },
+  save: function (showsA) {
+	console.log("showsAStorage.save was called:showsA=",showsA)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(showsA))
+  }
+}
+var counterStorage = {
+  fetch: function () {
+//	  var showsA =[true,true,true]
+    var counter = JSON.parse(localStorage.getItem(STORAGE_KEY2) || '[]')
+	console.log("counterStorage.fetch was called:counter=",counter)
+	/*  
+	todos.forEach(function (todo, index) {
+      todo.id = index
+    })
+	todoStorage.uid = todos.length
+	*/
+	return counter
+  },
+  save: function (counter) {
+	console.log("counterStorage.save was called:counter=",counter)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(counter))
+  }
+}
+
+  var app1 = new Vue({
+    el: '#app-2',
+    watch: {
+      message: function(newVal, oldVal) {
+        this.error.require = (newVal.length < 1) ? true : false;
+        this.error.tooLong = (newVal.length > 5) ? true : false;
+      }
+    },
+	data: {
+	  counter:0,
+	  name:"",
+  	  show: false,
+      left: false,
+      right: false,
+	  message: 'Hello', 
+      message01: '<h1>児島だよ</h1>',
+      message02: '<div v-text="message02"></div>だと',
+      message03: '<div>{{ message01 }}</div>だと',
+      message04: '<div v-html="message01"></div>だと',
+      message05: '児島だよ！',
+      message06: '大島さん？',
+      list: [
+		{jp:"今何時？",eng:" What time is it?"},
+		{jp:"もうすぐ7時。",eng:" Almost seven. "},
+		{jp:"もう8時だ。家に帰るね。",eng:" It’s already eight. I’m going home now. "},
+		{jp:" 夜ご飯何食べたい？",eng:" What do you want for dinner?"},
+		{jp:" 和食の気分だなぁ。",eng:" I feel Japanese."},
+		{jp:" 何か軽いものがいいな。",eng:" I want something light."},
+		{jp:" 週末はどうだった？",eng:" How was your weekend?"},
+		{jp:" 良かったよ。家族でバーベキューをしたんだ。",eng:" It was great. We had some BBQ."},
+		{jp:" 最悪だったよ。風邪で寝込んでたんだ。",eng:" It was awful. I was sick in bed."},
+		{jp:"すみません、お手洗いはどこですか？",eng:" Excuse me, where is the bathroom？"},
+		{jp:" あちらです。",eng:" Over there."},
+		{jp:" 上の階にあります。",eng:" It’s upstairs."},
+		{jp:" 今日何時に仕事終わる？",eng:" What time do you finish work?"},
+		{jp:"今日は早く終わりそう。 6時くらいかな。",eng:" I will finish early today. About six. "},
+		{jp:" 今日は遅くなりそうだ。",eng:" I will finish late today."},
+		{jp:" この辺にATMはありますか？",eng:" Is there a cash machine around here?"},
+		{jp:" あの建物の中にありますよ。",eng:" It‘s in that building."},
+		{jp:" ごめんなさい。ちょっと分からないです。",eng:" Sorry, I don’t know."},
+		{jp:" 普段どんな音楽を聞くの？",eng:" What kind of music do you listen to?"},
+		{jp:" なんでも聞くよ。",eng:" All kinds."},
+		{jp:" 洋楽をよく聞くよ。特にエド・シランが好き。",eng:" I listen to Western music. I love Ed Sheeran."},
+		{jp:" どのくらい英語を勉強しているの？",eng:" How long have you been studying English?"},
+		{jp:" 1年くらい勉強しているよ。",eng:" About a year."},
+		{jp:" 2ヶ月前に始めたばかり。",eng:" I just started 2 months ago."},
+		{jp:" どこにいるの？",eng:" Where are you? "},
+		{jp:" 今向かってる！あと5分で着く。",eng:"I’m on my way. I will be there in 5 minutes."},
+		{jp:" まだオフィスにいる。もうすぐ帰るよ。",eng:" I’m at work. I will be home soon."},
+		{jp:" 携帯の充電器持ってる？",eng:" Do you have a charger?"},
+		{jp:" ごめん今持ってない。",eng:" Sorry, no."},
+		{jp:" 持ってるよ。カバンの中に入ってる。",eng:" Yes. It’s in my bag."},
+		{jp:" 普段お酒は飲みますか？",eng:" Do you drink?"},
+		{jp:" 金曜の夜だけ飲みます。",eng:" Only on Friday night."},
+		{jp:" お酒は全く飲みません。",eng:" No, I don’t drink at all."},
+		{jp:" 寒くなってきたね。",eng:" It is getting chilly."},
+		{jp:" そうだね。冬服を買わなきゃ。",eng:" Yes. I have to buy some winter clothes."},
+		{jp:" そうだね。寒いのは苦手だ。",eng:" Yes. I don’t like cold weather."},
+		{jp:" ごめん、そろそろ行かなきゃ",eng:" Sorry, I have to go."},
+		{jp:" あ、もうこんな時間か！またあとでラインするね。",eng:" Time flies! I will message you later."},
+		{jp:" もうちょっとだけ時間ある？",eng:" Can you stay for just 5 more minutes?"},
+		{jp:" 今週末は何するの？",eng:" What are you doing this weekend?"},
+		{jp:" 家でゆっくりするかな。",eng:" Spending time at home."},
+		{jp:" 日光に日帰り旅行に行くよ。",eng:" I am having a day-trip to Nikko."},
+		{jp:" 何か運動はしてる？",eng:" Do you work out?"},
+		{jp:" 毎週ヨガのクラスに行っているよ。",eng:" I take Yoga lessons every week."},
+		{jp:" 家で筋トレしてる。",eng:" I work out at home."},
+		{jp:" 何か質問はある？",eng:" Do you have any questions?"},
+		{jp:" 今のところ大丈夫です。",eng:" Not for now."},
+		{jp:" もう一度確認したい点があります。",eng:" I would like to confirm some points."},
+		{jp:" どの映画を見たい？",eng:" Which movie do you want to watch?"},
+		{jp:" ハリウッド映画が見たいな。",eng:" I would like to see Hollywood movie."},
+		{jp:" なんでもいいよ。任せる。",eng:" I don’t have anything on my mind. It’s up to you."},
+		{jp:" どっちが欲しいですか？",eng:" Which one do you want?"},
+		{jp:" こっちにします。",eng:" This one, please."},
+		{jp:" 黒い方にします。",eng:" Black one, please."},
+		{jp:"ちょっと携帯借りてもいい？",eng:" Can I borrow your cellphone？"},
+		{jp:" うん、いいよ。どうぞ。",eng:" Of course. Here."},
+		{jp:" 何に使うの？",eng:" What are you going to do with it?"},
+		{jp:" 嫌いな食べ物はある？",eng:" Is there anything you dislike?"},
+		{jp:" 特にないよ。なんでも食べれる。",eng:" Not really. I can eat anything."},
+		{jp:" ホルモンが苦手。",eng:" I’m not keen on innards."},
+		{jp:" ゴミ出しておいてもらえる？",eng:" Can you take the garbage out?"},
+		{jp:" もう出したよ。",eng:" I took it out already."},
+		{jp:" 分かった。じゃあ、ゴミまとめておいて。",eng:" OK. Can you sort out the garbage?"},
+		{jp:"味はどう？",eng:" How do you like it ?"},
+		{jp:" まぁまぁ。ちょっと味が薄いかな。",eng:" So so. Maybe you should put more seasoning."},
+		{jp:" 美味しいよ。一口食べる？",eng:" It tastes great. Do you want to have a bite?"},
+		{jp:" 今日は私が奢るよ。",eng:"It’s on me."},
+		{jp:"本当に？ありがとう！",eng:" Really? Thank you! "},
+		{jp:" 大丈夫だよ。割り勘しよう。",eng:" Don’t worry. We can split the bill."},
+		{jp:" 新宿にはどうやって行けば良いですか？",eng:" How can I get to Shinjuku?"},
+		{jp:" この電車で3駅です。",eng:" Take this train and Shinjuku is the third stop."},
+		{jp:" 1番ホームから、山の手線に乗ってください。",eng:" Please go to platform 1 and take Yamanote Line."},
+		{jp:" 傘をトイレに置いてきちゃった！",eng:" I left my umbrella in the bathroom."},
+		{jp:" コンビニで新しい傘を買おう。",eng:" Just buy the new umbrella at the convenience store."},
+		{jp:" また？いつも置き忘れるね。",eng:" Again. You always do that."},
+		{jp:" ちょっとカフェで休憩しない？",eng:" Let’s sit down at the cafe."},
+		{jp:" いいね。スタバ行く？",eng:" OK. Do you want to go to Starbucks?"},
+		{jp:" そうしよう。この辺で良いカフェを知ってるよ。",eng:" Yes. I know a nice place around here."},
+		{jp:" 雨が降りそうだね。",eng:" It looks like it’s going to rain."},
+		{jp:" そうだね。傘持ってきた？",eng:" Yes. Do you have an umbrella?"},
+		{jp:" そうだね。天気予報は晴れだったんだけど。。",eng:" Yes. The forecast said it would be sunny."},
+		{jp:" その袋は何？",eng:" What is the bag for?"},
+		{jp:" 彼女にプレゼントを買ったんだ。",eng:" I bought a gift for my girlfriend."},
+		{jp:" 仕事用に新しいスーツを買ったんだ。",eng:" I bought a new suit for work."},
+		{jp:"年末は実家に帰るの？",eng:" Are you going to your parents’ house at the end of the year?"},
+		{jp:" 帰るよ。もう飛行機とった。",eng:" Yes. I already booked flights."},
+		{jp:" 仕事があるから帰れない。",eng:" No. I have to work."},
+		{jp:" 海外は行ったことがある？",eng:" Have you travelled abroad?"},
+		{jp:" うん。シンガポールに行ったことがある。",eng:" Yes. I have been to Singapore."},
+		{jp:" まだ一度もないよ。",eng:" No, I haven’t."},
+		{jp:" 仕事は楽しい？",eng:" Do you enjoy your work?"},
+		{jp:" うん、忙しいけど楽しいよ。",eng:" Yes, busy but fun."},
+		{jp:" あまり。転職しようと思っている。",eng:" Not really. I’m looking for a new job."},
+		{jp:" 休みの日は何してるの？",eng:" What do you do when you are off work?"},
+		{jp:" だいたい家でダラダラしてる。",eng:" Chilling at home."},
+		{jp:" YouTubeで動画を見ているよ。",eng:" I watch YouTube."},
+		{jp:" 夜ご飯いつもどうしてるの？",eng:" Where do you get your dinner?"},
+		{jp:" 自炊しているよ。",eng:" I cook for myself."},
+		{jp:" コンビニで済ませることが多いかな。",eng:" I usually buy my dinner at the convenience store."},
+		{jp:" あそこで何かイベントやってるみたいだね。",eng:" It looks like something is happening there."},
+		{jp:" ほんとだ。見てみよう！",eng:" Yeah. Let’s check it out."},
+		{jp:" ほんとだ。人がたくさんいる。",eng:" Yeah. There is a crowd of people."},
+		{jp:" 残業は多いの？",eng:" Do you do a lot of overtime?"},
+		{jp:" 日によるかな。",eng:" It depends."},
+		{jp:" だいたい定時で帰ってるよ。",eng:" Not really."},
+		{jp:" インドア派？アウトドア派？",eng:" Do you like indoor or outdoor activities?"},
+		{jp:" インドア派。家でのんびりするのが好き。",eng:" Indoor. I love relaxing at home."},
+		{jp:" アウトドア派。体を動かすことが好き。",eng:" Outdoor. I love staying active."},
+		{jp:" どっちが好きですか？",eng:" Which one do you like?"},
+		{jp:" こっちの方が好きです。",eng:" I prefer this one."},
+		{jp:" どちらも好きじゃありません。",eng:" I don’t like either of them."},
+      ],
+		checkedNames: [],
+	    shows: [false, false, false],
+	    showsA: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true],
+		items: [
+			{
+			index: '1',
+			name: 'Author 1',
+			content: 'Content 1'
+			},
+			{
+			index: '2',
+			name: 'Author 2',
+			content: 'Content 2'
+			},
+			{
+			index: '3',
+			name: 'Author 3',
+			content: 'Content 3'
+			}
+		],
+      error: {
+        require: false,
+        tooLong: false
+      },
+      seen: true,
+      type: 'A',
+      colorList: [ 'Red', 'Green', 'Blue' ]
+    },
+    methods: {
+      change: function(e) {
+        this.seen = e.target.checked
+      },
+      hello: function() {
+        alert("児島だよ!");
+      },
+	  anser: function() {
+		  this.counter = this.counter + 1;
+		this.show = this.counter;      
+	  },
+      changeStatus: function(index) {
+         //this.shows[index] = !this.shows[index];
+		 Vue.set(this.shows, index, !this.shows[index])
+         console.log("index is ",index); 
+         //console.log("shows is ",this.shows); 
+         console.log("shows[index] is ",this.shows[index]);  // console gets it as expected
+      },
+ 	  changeStatusA: function(index) {
+         //this.shows[index] = !this.shows[index];
+		 Vue.set(this.shows, index, !this.shows[index])
+		 Vue.set(this.showsA, index, !this.showsA[index])
+         console.log("index is ",index); 
+         //console.log("showsA is ",this.showsA); 
+         console.log("showsA[index] is ",this.showsA[index]);  // console gets it as expected
+     }	  
+
+	},
+	mounted(){
+		if (localStorage.name) {
+			this.name = localStorage.name;
+		}
+		// インスタンス作成時に自動的に fetch() する
+//		this.counter = counterStorage.fetch();
+		if (localStorage.counter) {
+			this.counter = localStorage.counter;
+		}
+		if (this.counter == null)
+			this.counter = 0;
+
+//		this.counter = 0;
+
+		console.log("mounted this.counter:",this.counter); 
+		console.log("showsAStorage.fetch呼ぶ前",this.counter); 
+		if(this.counter > 0){
+			this.showsA = showsAStorage.fetch()
+			console.log("showsAStorage.fetch was called"); 
+		}
+		else{
+			this.list.forEach((index) => {
+				this.showsA[index] = "true"
+			});
+			console.log("最初のコールなので全部にtrueを設定し、保存。",this.showsA); 
+			showsAStorage.save(this.showsA)
+		}
+		this.counter = this.counter + 1;
+		console.log("counter was incrimented:",this.counter); 
+	},
+	watch: {
+		name(newName) {
+			localStorage.name = newName;
+			console.log("newName id:",newName); 
+		},
+		// オプションを使う場合はオブジェクト形式にする
+		showsA: {
+			// 引数はウォッチしているプロパティの変更後の値
+			handler: function (showsA) {
+				showsAStorage.save(showsA)
+				//console.log("showsA was changed,call showsAStorage.save",showsA); 
+//				this.showsA = showsAStorage.fetch()
+//				console.log("保存したものを持って来てみる。",showsA); 
+			},
+		},
+		// オプションを使う場合はオブジェクト形式にする
+		counter: {
+				// 引数はウォッチしているプロパティの変更後の値
+				handler: function (counter) {
+//					counterStorage.save(counter)
+					localStorage.counter = counter;
+					console.log("counter:",counter); 
+					console.log("counter was saved:",this.counter); 
+				},
+		},
+		// deep オプションでネストしているデータも監視できる
+		deep: true
+	  },
+})
+  </script>
+  </body>
+</html>
