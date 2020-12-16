@@ -17,39 +17,14 @@
 
 
 	<h1>日常会話でよく使う短い英会話114</h4>
-	<br>
+	<br>	
+	<button onclick="stop()">停止</button>
+	<button onclick="play()" id="play">再生</button>
+		<div class="text-box" align=center  >
+		<button v-on:click="reset()">リセット</button>
+	</div>
 	<h3>正解だったら正解ボタンをクリック。次から問題に出なくなります。</h3>
 
-<!--
-	My name is <input v-model="name">
-
-	<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-	<label for="jack">Jack</label>
-	<input type="checkbox" id="john" value="John" v-model="checkedNames">
-	<label for="john">John</label>
-	<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-	<label for="mike">Mike</label>
-	<br>
-	<span>Checked names: {{ checkedNames }}</span>
-
-	<button v-on:click="anser">anser</button>
-
-		<section class="item-container" v-for="(item, index) in items">
-			<h4>{{ item.name }}<button v-on:click="changeStatus(index)">表示</button></h4>
-	
-			<div class="text-box"  v-if="shows[index]">
-			  <h4>{{ item.content }}</h4>
-			</div>
-	   </section>
-
-
-	<ul>
-	  <li v-for="item in list">
-	    和文：{{ item.jp }}		<br>
-		英文：{{ item.eng }}
-	  </li>
-	</ul>
--->
 
 <section class="item-container" v-for="(item, index) in list">
 	<div class="text-box"  v-if="showsA[index]">
@@ -63,6 +38,31 @@
 
   </div>
   
+  <script language="javascript" type="text/javascript">
+	var music = new Audio();
+	function init() {
+	  music.preload = "auto";
+	  music.src = "./My Love 6.24 .mp3";
+	  music.load();
+  
+	  music.addEventListener("ended", function () {
+		music.currentTime = 0;
+		music.play();
+	  }, false);
+	}
+  
+	function play() {
+	  music.loop = true;
+	  music.play();
+	}
+  
+	function stop() {
+	  music.pause();
+	  music.currentTime = 0;
+	}
+  
+	init();
+</script>
 
 <script>
 
@@ -128,117 +128,117 @@ var counterStorage = {
       message05: '児島だよ！',
       message06: '大島さん？',
       list: [
-		{jp:"今何時？",eng:" What time is it?"},
-		{jp:"もうすぐ7時。",eng:" Almost seven. "},
-		{jp:"もう8時だ。家に帰るね。",eng:" It’s already eight. I’m going home now. "},
-		{jp:" 夜ご飯何食べたい？",eng:" What do you want for dinner?"},
-		{jp:" 和食の気分だなぁ。",eng:" I feel Japanese."},
-		{jp:" 何か軽いものがいいな。",eng:" I want something light."},
-		{jp:" 週末はどうだった？",eng:" How was your weekend?"},
-		{jp:" 良かったよ。家族でバーベキューをしたんだ。",eng:" It was great. We had some BBQ."},
-		{jp:" 最悪だったよ。風邪で寝込んでたんだ。",eng:" It was awful. I was sick in bed."},
-		{jp:"すみません、お手洗いはどこですか？",eng:" Excuse me, where is the bathroom？"},
-		{jp:" あちらです。",eng:" Over there."},
-		{jp:" 上の階にあります。",eng:" It’s upstairs."},
-		{jp:" 今日何時に仕事終わる？",eng:" What time do you finish work?"},
-		{jp:"今日は早く終わりそう。 6時くらいかな。",eng:" I will finish early today. About six. "},
-		{jp:" 今日は遅くなりそうだ。",eng:" I will finish late today."},
-		{jp:" この辺にATMはありますか？",eng:" Is there a cash machine around here?"},
-		{jp:" あの建物の中にありますよ。",eng:" It‘s in that building."},
-		{jp:" ごめんなさい。ちょっと分からないです。",eng:" Sorry, I don’t know."},
-		{jp:" 普段どんな音楽を聞くの？",eng:" What kind of music do you listen to?"},
-		{jp:" なんでも聞くよ。",eng:" All kinds."},
-		{jp:" 洋楽をよく聞くよ。特にエド・シランが好き。",eng:" I listen to Western music. I love Ed Sheeran."},
-		{jp:" どのくらい英語を勉強しているの？",eng:" How long have you been studying English?"},
-		{jp:" 1年くらい勉強しているよ。",eng:" About a year."},
-		{jp:" 2ヶ月前に始めたばかり。",eng:" I just started 2 months ago."},
-		{jp:" どこにいるの？",eng:" Where are you? "},
-		{jp:" 今向かってる！あと5分で着く。",eng:"I’m on my way. I will be there in 5 minutes."},
-		{jp:" まだオフィスにいる。もうすぐ帰るよ。",eng:" I’m at work. I will be home soon."},
-		{jp:" 携帯の充電器持ってる？",eng:" Do you have a charger?"},
-		{jp:" ごめん今持ってない。",eng:" Sorry, no."},
-		{jp:" 持ってるよ。カバンの中に入ってる。",eng:" Yes. It’s in my bag."},
-		{jp:" 普段お酒は飲みますか？",eng:" Do you drink?"},
-		{jp:" 金曜の夜だけ飲みます。",eng:" Only on Friday night."},
-		{jp:" お酒は全く飲みません。",eng:" No, I don’t drink at all."},
-		{jp:" 寒くなってきたね。",eng:" It is getting chilly."},
-		{jp:" そうだね。冬服を買わなきゃ。",eng:" Yes. I have to buy some winter clothes."},
-		{jp:" そうだね。寒いのは苦手だ。",eng:" Yes. I don’t like cold weather."},
-		{jp:" ごめん、そろそろ行かなきゃ",eng:" Sorry, I have to go."},
-		{jp:" あ、もうこんな時間か！またあとでラインするね。",eng:" Time flies! I will message you later."},
-		{jp:" もうちょっとだけ時間ある？",eng:" Can you stay for just 5 more minutes?"},
-		{jp:" 今週末は何するの？",eng:" What are you doing this weekend?"},
-		{jp:" 家でゆっくりするかな。",eng:" Spending time at home."},
-		{jp:" 日光に日帰り旅行に行くよ。",eng:" I am having a day-trip to Nikko."},
-		{jp:" 何か運動はしてる？",eng:" Do you work out?"},
-		{jp:" 毎週ヨガのクラスに行っているよ。",eng:" I take Yoga lessons every week."},
-		{jp:" 家で筋トレしてる。",eng:" I work out at home."},
-		{jp:" 何か質問はある？",eng:" Do you have any questions?"},
-		{jp:" 今のところ大丈夫です。",eng:" Not for now."},
-		{jp:" もう一度確認したい点があります。",eng:" I would like to confirm some points."},
-		{jp:" どの映画を見たい？",eng:" Which movie do you want to watch?"},
-		{jp:" ハリウッド映画が見たいな。",eng:" I would like to see Hollywood movie."},
-		{jp:" なんでもいいよ。任せる。",eng:" I don’t have anything on my mind. It’s up to you."},
-		{jp:" どっちが欲しいですか？",eng:" Which one do you want?"},
-		{jp:" こっちにします。",eng:" This one, please."},
-		{jp:" 黒い方にします。",eng:" Black one, please."},
-		{jp:"ちょっと携帯借りてもいい？",eng:" Can I borrow your cellphone？"},
-		{jp:" うん、いいよ。どうぞ。",eng:" Of course. Here."},
-		{jp:" 何に使うの？",eng:" What are you going to do with it?"},
-		{jp:" 嫌いな食べ物はある？",eng:" Is there anything you dislike?"},
-		{jp:" 特にないよ。なんでも食べれる。",eng:" Not really. I can eat anything."},
-		{jp:" ホルモンが苦手。",eng:" I’m not keen on innards."},
-		{jp:" ゴミ出しておいてもらえる？",eng:" Can you take the garbage out?"},
-		{jp:" もう出したよ。",eng:" I took it out already."},
-		{jp:" 分かった。じゃあ、ゴミまとめておいて。",eng:" OK. Can you sort out the garbage?"},
-		{jp:"味はどう？",eng:" How do you like it ?"},
-		{jp:" まぁまぁ。ちょっと味が薄いかな。",eng:" So so. Maybe you should put more seasoning."},
-		{jp:" 美味しいよ。一口食べる？",eng:" It tastes great. Do you want to have a bite?"},
-		{jp:" 今日は私が奢るよ。",eng:"It’s on me."},
-		{jp:"本当に？ありがとう！",eng:" Really? Thank you! "},
-		{jp:" 大丈夫だよ。割り勘しよう。",eng:" Don’t worry. We can split the bill."},
-		{jp:" 新宿にはどうやって行けば良いですか？",eng:" How can I get to Shinjuku?"},
-		{jp:" この電車で3駅です。",eng:" Take this train and Shinjuku is the third stop."},
-		{jp:" 1番ホームから、山の手線に乗ってください。",eng:" Please go to platform 1 and take Yamanote Line."},
-		{jp:" 傘をトイレに置いてきちゃった！",eng:" I left my umbrella in the bathroom."},
-		{jp:" コンビニで新しい傘を買おう。",eng:" Just buy the new umbrella at the convenience store."},
-		{jp:" また？いつも置き忘れるね。",eng:" Again. You always do that."},
-		{jp:" ちょっとカフェで休憩しない？",eng:" Let’s sit down at the cafe."},
-		{jp:" いいね。スタバ行く？",eng:" OK. Do you want to go to Starbucks?"},
-		{jp:" そうしよう。この辺で良いカフェを知ってるよ。",eng:" Yes. I know a nice place around here."},
-		{jp:" 雨が降りそうだね。",eng:" It looks like it’s going to rain."},
-		{jp:" そうだね。傘持ってきた？",eng:" Yes. Do you have an umbrella?"},
-		{jp:" そうだね。天気予報は晴れだったんだけど。。",eng:" Yes. The forecast said it would be sunny."},
-		{jp:" その袋は何？",eng:" What is the bag for?"},
-		{jp:" 彼女にプレゼントを買ったんだ。",eng:" I bought a gift for my girlfriend."},
-		{jp:" 仕事用に新しいスーツを買ったんだ。",eng:" I bought a new suit for work."},
-		{jp:"年末は実家に帰るの？",eng:" Are you going to your parents’ house at the end of the year?"},
-		{jp:" 帰るよ。もう飛行機とった。",eng:" Yes. I already booked flights."},
-		{jp:" 仕事があるから帰れない。",eng:" No. I have to work."},
-		{jp:" 海外は行ったことがある？",eng:" Have you travelled abroad?"},
-		{jp:" うん。シンガポールに行ったことがある。",eng:" Yes. I have been to Singapore."},
-		{jp:" まだ一度もないよ。",eng:" No, I haven’t."},
-		{jp:" 仕事は楽しい？",eng:" Do you enjoy your work?"},
-		{jp:" うん、忙しいけど楽しいよ。",eng:" Yes, busy but fun."},
-		{jp:" あまり。転職しようと思っている。",eng:" Not really. I’m looking for a new job."},
-		{jp:" 休みの日は何してるの？",eng:" What do you do when you are off work?"},
-		{jp:" だいたい家でダラダラしてる。",eng:" Chilling at home."},
-		{jp:" YouTubeで動画を見ているよ。",eng:" I watch YouTube."},
-		{jp:" 夜ご飯いつもどうしてるの？",eng:" Where do you get your dinner?"},
-		{jp:" 自炊しているよ。",eng:" I cook for myself."},
-		{jp:" コンビニで済ませることが多いかな。",eng:" I usually buy my dinner at the convenience store."},
-		{jp:" あそこで何かイベントやってるみたいだね。",eng:" It looks like something is happening there."},
-		{jp:" ほんとだ。見てみよう！",eng:" Yeah. Let’s check it out."},
-		{jp:" ほんとだ。人がたくさんいる。",eng:" Yeah. There is a crowd of people."},
-		{jp:" 残業は多いの？",eng:" Do you do a lot of overtime?"},
-		{jp:" 日によるかな。",eng:" It depends."},
-		{jp:" だいたい定時で帰ってるよ。",eng:" Not really."},
-		{jp:" インドア派？アウトドア派？",eng:" Do you like indoor or outdoor activities?"},
-		{jp:" インドア派。家でのんびりするのが好き。",eng:" Indoor. I love relaxing at home."},
-		{jp:" アウトドア派。体を動かすことが好き。",eng:" Outdoor. I love staying active."},
-		{jp:" どっちが好きですか？",eng:" Which one do you like?"},
-		{jp:" こっちの方が好きです。",eng:" I prefer this one."},
-		{jp:" どちらも好きじゃありません。",eng:" I don’t like either of them."},
+		  {jp:"1 今何時？",eng:" What time is it?"},
+		  {jp:"2 もうすぐ7時。",eng:" Almost seven. "},
+		  {jp:"3 もう8時だ。家に帰るね。",eng:" It’s already eight. I’m going home now. "},
+		  {jp:"4 夜ご飯何食べたい？",eng:" What do you want for dinner?"},
+		  {jp:"5 和食の気分だなぁ。",eng:" I feel Japanese."},
+		  {jp:"6 何か軽いものがいいな。",eng:" I want something light."},
+		  {jp:"7 週末はどうだった？",eng:" How was your weekend?"},
+		  {jp:"8 良かったよ。家族でバーベキューをしたんだ。",eng:" It was great. We had some BBQ."},
+		  {jp:"9 最悪だったよ。風邪で寝込んでたんだ。",eng:" It was awful. I was sick in bed."},
+		  {jp:"10 すみません、お手洗いはどこですか？",eng:" Excuse me, where is the bathroom？"},
+		  {jp:"11 あちらです。",eng:" Over there."},
+		  {jp:"12 上の階にあります。",eng:" It’s upstairs."},
+		  {jp:"13 今日何時に仕事終わる？",eng:" What time do you finish work?"},
+		  {jp:"14今日は早く終わりそう。 6時くらいかな。",eng:" I will finish early today. About six. "},
+		  {jp:"15 今日は遅くなりそうだ。",eng:" I will finish late today."},
+		  {jp:"16 この辺にATMはありますか？",eng:" Is there a cash machine around here?"},
+		  {jp:"17 あの建物の中にありますよ。",eng:" It‘s in that building."},
+		  {jp:"18 ごめんなさい。ちょっと分からないです。",eng:" Sorry, I don’t know."},
+		  {jp:"19 普段どんな音楽を聞くの？",eng:" What kind of music do you listen to?"},
+		  {jp:"20 なんでも聞くよ。",eng:" All kinds."},
+		  {jp:"21 洋楽をよく聞くよ。特にエド・シランが好き。",eng:" I listen to Western music. I love Ed Sheeran."},
+		  {jp:"22 どのくらい英語を勉強しているの？",eng:" How long have you been studying English?"},
+		  {jp:"23 1年くらい勉強しているよ。",eng:" About a year."},
+		  {jp:"24 2ヶ月前に始めたばかり。",eng:" I just started 2 months ago."},
+		  {jp:"25 どこにいるの？",eng:" Where are you? "},
+		  {jp:"26 今向かってる！あと5分で着く。",eng:"I’m on my way. I will be there in 5 minutes."},
+		  {jp:"27 まだオフィスにいる。もうすぐ帰るよ。",eng:" I’m at work. I will be home soon."},
+		  {jp:"28 携帯の充電器持ってる？",eng:" Do you have a charger?"},
+		  {jp:"29 ごめん今持ってない。",eng:" Sorry, no."},
+		  {jp:"30 持ってるよ。カバンの中に入ってる。",eng:" Yes. It’s in my bag."},
+		  {jp:"31 普段お酒は飲みますか？",eng:" Do you drink?"},
+		  {jp:"32 金曜の夜だけ飲みます。",eng:" Only on Friday night."},
+		  {jp:"33 お酒は全く飲みません。",eng:" No, I don’t drink at all."},
+		  {jp:"34 寒くなってきたね。",eng:" It is getting chilly."},
+		  {jp:"35 そうだね。冬服を買わなきゃ。",eng:" Yes. I have to buy some winter clothes."},
+		  {jp:"36 そうだね。寒いのは苦手だ。",eng:" Yes. I don’t like cold weather."},
+		  {jp:"37 ごめん、そろそろ行かなきゃ",eng:" Sorry, I have to go."},
+		  {jp:"38 あ、もうこんな時間か！またあとでラインするね。",eng:" Time flies! I will message you later."},
+		  {jp:"39 もうちょっとだけ時間ある？",eng:" Can you stay for just 5 more minutes?"},
+		  {jp:"40 今週末は何するの？",eng:" What are you doing this weekend?"},
+		  {jp:"41 家でゆっくりするかな。",eng:" Spending time at home."},
+		  {jp:"42 日光に日帰り旅行に行くよ。",eng:" I am having a day-trip to Nikko."},
+		  {jp:"43 何か運動はしてる？",eng:" Do you work out?"},
+		  {jp:"44 毎週ヨガのクラスに行っているよ。",eng:" I take Yoga lessons every week."},
+		  {jp:"45 家で筋トレしてる。",eng:" I work out at home."},
+		  {jp:"46 何か質問はある？",eng:" Do you have any questions?"},
+		  {jp:"47 今のところ大丈夫です。",eng:" Not for now."},
+		  {jp:"48 もう一度確認したい点があります。",eng:" I would like to confirm some points."},
+		  {jp:"49 どの映画を見たい？",eng:" Which movie do you want to watch?"},
+		  {jp:"50 ハリウッド映画が見たいな。",eng:" I would like to see Hollywood movie."},
+		  {jp:"51 なんでもいいよ。任せる。",eng:" I don’t have anything on my mind. It’s up to you."},
+		  {jp:"52 どっちが欲しいですか？",eng:" Which one do you want?"},
+		  {jp:"53 こっちにします。",eng:" This one, please."},
+		  {jp:"54 黒い方にします。",eng:" Black one, please."},
+		  {jp:"55ちょっと携帯借りてもいい？",eng:" Can I borrow your cellphone？"},
+		  {jp:"56 うん、いいよ。どうぞ。",eng:" Of course. Here."},
+		  {jp:"57 何に使うの？",eng:" What are you going to do with it?"},
+		  {jp:"58 嫌いな食べ物はある？",eng:" Is there anything you dislike?"},
+		  {jp:"59 特にないよ。なんでも食べれる。",eng:" Not really. I can eat anything."},
+		  {jp:"60 ホルモンが苦手。",eng:" I’m not keen on innards."},
+		  {jp:"61 ゴミ出しておいてもらえる？",eng:" Can you take the garbage out?"},
+		  {jp:"62 もう出したよ。",eng:" I took it out already."},
+		  {jp:"63 分かった。じゃあ、ゴミまとめておいて。",eng:" OK. Can you sort out the garbage?"},
+		  {jp:"64 味はどう？",eng:" How do you like it ?"},
+		  {jp:"65 まぁまぁ。ちょっと味が薄いかな。",eng:" So so. Maybe you should put more seasoning."},
+		  {jp:"66 美味しいよ。一口食べる？",eng:" It tastes great. Do you want to have a bite?"},
+		  {jp:"67 今日は私が奢るよ。",eng:"It’s on me."},
+		  {jp:"68本当に？ありがとう！",eng:" Really? Thank you! "},
+		  {jp:"69 大丈夫だよ。割り勘しよう。",eng:" Don’t worry. We can split the bill."},
+		  {jp:"70 新宿にはどうやって行けば良いですか？",eng:" How can I get to Shinjuku?"},
+		  {jp:"71 この電車で3駅です。",eng:" Take this train and Shinjuku is the third stop."},
+		  {jp:"72 1番ホームから、山の手線に乗ってください。",eng:" Please go to platform 1 and take Yamanote Line."},
+		  {jp:"73 傘をトイレに置いてきちゃった！",eng:" I left my umbrella in the bathroom."},
+		  {jp:"74 コンビニで新しい傘を買おう。",eng:" Just buy the new umbrella at the convenience store."},
+		  {jp:"75 また？いつも置き忘れるね。",eng:" Again. You always do that."},
+		  {jp:"76 ちょっとカフェで休憩しない？",eng:" Let’s sit down at the cafe."},
+		  {jp:"77 いいね。スタバ行く？",eng:" OK. Do you want to go to Starbucks?"},
+		  {jp:"78 そうしよう。この辺で良いカフェを知ってるよ。",eng:" Yes. I know a nice place around here."},
+		  {jp:"79 雨が降りそうだね。",eng:" It looks like it’s going to rain."},
+		  {jp:"80 そうだね。傘持ってきた？",eng:" Yes. Do you have an umbrella?"},
+		  {jp:"81 そうだね。天気予報は晴れだったんだけど。。",eng:" Yes. The forecast said it would be sunny."},
+		  {jp:"82 その袋は何？",eng:" What is the bag for?"},
+		  {jp:"83 彼女にプレゼントを買ったんだ。",eng:" I bought a gift for my girlfriend."},
+		  {jp:"84 仕事用に新しいスーツを買ったんだ。",eng:" I bought a new suit for work."},
+		  {jp:"85 年末は実家に帰るの？",eng:" Are you going to your parents’ house at the end of the year?"},
+		  {jp:"86 帰るよ。もう飛行機とった。",eng:" Yes. I already booked flights."},
+		  {jp:"87 仕事があるから帰れない。",eng:" No. I have to work."},
+		  {jp:"88 海外は行ったことがある？",eng:" Have you travelled abroad?"},
+		  {jp:"89 うん。シンガポールに行ったことがある。",eng:" Yes. I have been to Singapore."},
+		  {jp:"90 まだ一度もないよ。",eng:" No, I haven’t."},
+		  {jp:"91 仕事は楽しい？",eng:" Do you enjoy your work?"},
+		  {jp:"92 うん、忙しいけど楽しいよ。",eng:" Yes, busy but fun."},
+		  {jp:"93 あまり。転職しようと思っている。",eng:" Not really. I’m looking for a new job."},
+		  {jp:"94 休みの日は何してるの？",eng:" What do you do when you are off work?"},
+		  {jp:"95 だいたい家でダラダラしてる。",eng:" Chilling at home."},
+		  {jp:"96 YouTubeで動画を見ているよ。",eng:" I watch YouTube."},
+		  {jp:"97 夜ご飯いつもどうしてるの？",eng:" Where do you get your dinner?"},
+		  {jp:"98 自炊しているよ。",eng:" I cook for myself."},
+		  {jp:"99 コンビニで済ませることが多いかな。",eng:" I usually buy my dinner at the convenience store."},
+		  {jp:"100 あそこで何かイベントやってるみたいだね。",eng:" It looks like something is happening there."},
+		  {jp:"101 ほんとだ。見てみよう！",eng:" Yeah. Let’s check it out."},
+		  {jp:"102 ほんとだ。人がたくさんいる。",eng:" Yeah. There is a crowd of people."},
+		  {jp:"103 残業は多いの？",eng:" Do you do a lot of overtime?"},
+		  {jp:"104 日によるかな。",eng:" It depends."},
+		  {jp:"105 だいたい定時で帰ってるよ。",eng:" Not really."},
+		  {jp:"106 インドア派？アウトドア派？",eng:" Do you like indoor or outdoor activities?"},
+		  {jp:"107 インドア派。家でのんびりするのが好き。",eng:" Indoor. I love relaxing at home."},
+		  {jp:"108 アウトドア派。体を動かすことが好き。",eng:" Outdoor. I love staying active."},
+		  {jp:"109 どっちが好きですか？",eng:" Which one do you like?"},
+		  {jp:"110 こっちの方が好きです。",eng:" I prefer this one."},
+		  {jp:"111 どちらも好きじゃありません。",eng:" I don’t like either of them."},
       ],
 		checkedNames: [],
 	    shows: [false, false, false],
@@ -293,7 +293,18 @@ var counterStorage = {
          console.log("index is ",index); 
          //console.log("showsA is ",this.showsA); 
          console.log("showsA[index] is ",this.showsA[index]);  // console gets it as expected
-     }	  
+      },	  
+	  reset: function() {
+		const shows = [];
+		console.log("showsA is ",this.showsA);  // console gets it as expected
+		this.showsA.forEach(function (show) {
+			show =true
+			shows.push(show);
+		});
+
+		this.showsA = shows;     
+		console.log("showsA is ",this.showsA);  // console gets it as expected
+	  }	  
 
 	},
 	mounted(){
